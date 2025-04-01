@@ -18,6 +18,9 @@ dependencies:
   collecto_data:
     path: packages/collecto_data
 
+  collecto_repos:
+    path: packages/collecto_repos
+
 dev_dependencies:
   bloc_test: ^10.0.0
   flutter_test:
