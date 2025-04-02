@@ -13,9 +13,7 @@ class ProductCard extends StatelessWidget {
     return ClipRect(
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.6,
-        //height: MediaQuery.of(context).size.height * 0.3,
         child: Column(
-          //mainAxisSize: MainAxisSize.min,
           children: [
             _productPreview,
             _spacer,
@@ -84,7 +82,7 @@ class ProductCard extends StatelessWidget {
             child: Column(
               children: [
                 Text(
-                  p.rating.count.toString(),
+                  '100',
                   style: Get.textTheme.bodyLarge?.copyWith(
                     color: Colors.brown,
                     fontWeight: FontWeight.bold,
@@ -109,8 +107,8 @@ class ProductCard extends StatelessWidget {
                     color: Colors.brown,
                   ),
                 ),
-                const Text(
-                  'Price per share required',
+                Text(
+                  'Price per share required'.tr,
                   textAlign: TextAlign.center,
                   maxLines: 2,
                 ),
@@ -121,7 +119,7 @@ class ProductCard extends StatelessWidget {
       );
 
   Widget get _btnBuyNow => InkWell(
-        onTap: () => (),
+        onTap: () => Get.log('Item with ID:${p.id} was clicked'),
         child: Container(
           decoration: const BoxDecoration(
             borderRadius: BorderRadius.only(
@@ -132,8 +130,8 @@ class ProductCard extends StatelessWidget {
           ),
           padding: const EdgeInsets.all(10),
           width: double.infinity,
-          child: const Text(
-            'Buy Now',
+          child: Text(
+            'Buy Now'.tr,
             textAlign: TextAlign.center,
           ),
         ),

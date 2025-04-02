@@ -1,4 +1,5 @@
 import 'package:collecto_repos/collecto_repos.dart';
+import 'package:collecto_store/common/common.dart';
 import 'package:get/get.dart';
 
 class CategoriesController extends GetxController
@@ -24,7 +25,7 @@ class CategoriesController extends GetxController
       ),
       (failure) => change(
         categories,
-        status: RxStatus.error(failure.statusMessage),
+        status: RxStatus.error(failure.userFriendlyMessage),
       ),
     );
   }

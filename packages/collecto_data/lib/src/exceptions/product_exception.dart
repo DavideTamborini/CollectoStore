@@ -1,9 +1,8 @@
-class ProductException implements Exception {
-  const ProductException({
-    this.statusMessage,
-    this.statusCode,
-  });
+import 'package:collecto_data/collecto_data.dart';
 
-  final String? statusMessage;
-  final int? statusCode;
+class ProductException extends CollectoException {
+  const ProductException({
+    super.statusMessage,
+    super.statusCode,
+  });
 }

@@ -40,8 +40,12 @@ class HomePage extends GetView<CategoriesController> {
           onLoading: const Center(
             child: CircularProgressIndicator(),
           ),
-          onEmpty: const Text('No category found'),
-          onError: (message) => Text('$message'),
+          onEmpty: Text('No category found'.tr),
+          onError: (message) => SizedBox.expand(
+            child: Center(
+              child: Text('$message'.tr),
+            ),
+          ),
         ),
       ),
     );

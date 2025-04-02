@@ -1,5 +1,6 @@
 import 'package:collecto_data/collecto_data.dart';
 import 'package:collecto_repos/collecto_repos.dart';
+import 'package:collecto_store/common/common.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
@@ -60,7 +61,7 @@ class ProductsController extends GetxController with StateMixin<List<Product>> {
       },
       (failure) => change(
         products,
-        status: RxStatus.error(failure.statusMessage),
+        status: RxStatus.error(failure.userFriendlyMessage),
       ),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:collecto_data/collecto_data.dart';
+import 'package:collecto_repos/src/extensions/dio_exception.dart';
 import 'package:collecto_repos/src/interfaces/generic_interfaces.dart';
 import 'package:dartz/dartz.dart';
 
@@ -26,7 +27,10 @@ class ProductRepository implements IGenericRepo<Product> {
       return Right(
         e is ProductException
             ? e
-            : ProductException(statusMessage: e.toString()),
+            : ProductException(
+                statusMessage:
+                    e is DioException ? e.userFriendlyMessage : e.toString(),
+              ),
       );
     }
   }
@@ -42,7 +46,10 @@ class ProductRepository implements IGenericRepo<Product> {
       return Right(
         e is ProductException
             ? e
-            : ProductException(statusMessage: e.toString()),
+            : ProductException(
+                statusMessage:
+                    e is DioException ? e.userFriendlyMessage : e.toString(),
+              ),
       );
     }
   }
@@ -55,7 +62,10 @@ class ProductRepository implements IGenericRepo<Product> {
       return Right(
         e is ProductException
             ? e
-            : ProductException(statusMessage: e.toString()),
+            : ProductException(
+                statusMessage:
+                    e is DioException ? e.userFriendlyMessage : e.toString(),
+              ),
       );
     }
   }
@@ -77,7 +87,10 @@ class ProductRepository implements IGenericRepo<Product> {
       return Right(
         e is ProductException
             ? e
-            : ProductException(statusMessage: e.toString()),
+            : ProductException(
+                statusMessage:
+                    e is DioException ? e.userFriendlyMessage : e.toString(),
+              ),
       );
     }
   }
