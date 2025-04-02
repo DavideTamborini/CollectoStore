@@ -1,22 +1,26 @@
-import 'package:collecto_store/l10n/l10n.dart';
+import 'package:collecto_repos/collecto_repos.dart';
+import 'package:collecto_store/app/bindings/bindings.dart';
+import 'package:collecto_store/pages/home/controller/products_controller.dart';
 import 'package:collecto_store/pages/home/view/home_page.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class AppView extends StatelessWidget {
   const AppView({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        appBarTheme: AppBarTheme(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        ),
-        useMaterial3: true,
+    // Product controller injection
+    Get.put(
+      ProductsController(
+        RepositoryProvider.of<ProductRepository>(context),
       ),
-      localizationsDelegates: AppLocalizations.localizationsDelegates,
-      supportedLocales: AppLocalizations.supportedLocales,
+    );
+
+    return GetMaterialApp(
       home: const HomePage(),
+      initialBinding: DependenciesBinding(),
     );
   }
 }
