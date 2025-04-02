@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:collecto_data/collecto_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -39,11 +40,16 @@ class ProductCard extends StatelessWidget {
         ),
         padding: const EdgeInsets.all(10),
         child: Center(
-          child: Image.network(
-            p.image,
+          child: CachedNetworkImage(
             width: Get.width * 0.4,
             height: Get.height * 0.15,
             fit: BoxFit.contain,
+            progressIndicatorBuilder: (context, url, progress) => Center(
+              child: CircularProgressIndicator(
+                value: progress.progress,
+              ),
+            ),
+            imageUrl: p.image,
           ),
         ),
       );
@@ -54,7 +60,7 @@ class ProductCard extends StatelessWidget {
           mainAxisSize: MainAxisSize.min,
           children: [
             Text(
-              p.title,
+              '${p.title}\n',
               maxLines: 2,
               style: Get.theme.textTheme.titleMedium,
             ),
@@ -114,19 +120,22 @@ class ProductCard extends StatelessWidget {
         ],
       );
 
-  Widget get _btnBuyNow => Container(
-        decoration: const BoxDecoration(
-          borderRadius: BorderRadius.only(
-            bottomLeft: Radius.circular(10),
-            bottomRight: Radius.circular(10),
+  Widget get _btnBuyNow => InkWell(
+        onTap: () => (),
+        child: Container(
+          decoration: const BoxDecoration(
+            borderRadius: BorderRadius.only(
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10),
+            ),
+            color: Colors.greenAccent,
           ),
-          color: Colors.greenAccent,
-        ),
-        padding: const EdgeInsets.all(10),
-        width: double.infinity,
-        child: const Text(
-          'Buy Now',
-          textAlign: TextAlign.center,
+          padding: const EdgeInsets.all(10),
+          width: double.infinity,
+          child: const Text(
+            'Buy Now',
+            textAlign: TextAlign.center,
+          ),
         ),
       );
 }
