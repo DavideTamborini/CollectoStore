@@ -32,7 +32,7 @@ class ProductCategory extends GetView<ProductsController> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              categoryName,
+              '${categoryName.capitalizeFirst}',
               style: Get.theme.textTheme.titleLarge?.copyWith(
                 fontStyle: FontStyle.italic,
               ),
@@ -56,8 +56,12 @@ class ProductCategory extends GetView<ProductsController> {
           onLoading: const Center(
             child: CircularProgressIndicator(),
           ),
-          onEmpty: const Text('empty'),
-          onError: (message) => Text('$message'),
+          onEmpty: Text('No products found in this category'.tr),
+          onError: (message) => SizedBox.expand(
+            child: Center(
+              child: Text('$message'.tr),
+            ),
+          ),
         ),
       );
 }
