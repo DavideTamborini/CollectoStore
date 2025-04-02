@@ -4,6 +4,7 @@ library;
 /// external library export
 export 'package:dio/dio.dart';
 
+export 'src/enums/enums.dart';
 export 'src/exceptions/exceptions.dart';
 export 'src/interfaces/interfaces.dart';
 export 'src/managers/managers.dart';
