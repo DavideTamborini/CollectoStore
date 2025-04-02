@@ -7,6 +7,7 @@ environment:
   sdk: ^3.4.0
 
 dependencies:
+  cached_network_image: ^3.4.1
   collecto_data:
     path: packages/collecto_data
 
