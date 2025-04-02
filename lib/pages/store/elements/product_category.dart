@@ -18,6 +18,7 @@ class ProductCategory extends GetView<ProductsController> {
   Widget build(BuildContext context) {
     return Column(
       children: [
+        _spacer,
         _categoryTitle,
         _spacer,
         _categoryProducts,
