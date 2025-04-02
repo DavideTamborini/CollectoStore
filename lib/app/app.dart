@@ -1,21 +1,16 @@
-import 'package:collecto_data/collecto_data.dart';
-import 'package:collecto_repos/collecto_repos.dart';
-import 'package:collecto_store/app/view/app.dart';
+import 'package:collecto_store/app/bindings/bindings.dart';
+import 'package:collecto_store/pages/store/view/store_page.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get/get.dart';
 
 class App extends StatelessWidget {
-  const App({required this.apiClient, super.key});
-
-  final Dio apiClient;
+  const App({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<ProductRepository>(
-      create: (_) => ProductRepository(
-        productApi: ProductApiManager(apiClient),
-      ),
-      child: const AppView(),
+    return GetMaterialApp(
+      home: const HomePage(),
+      initialBinding: DependenciesBinding(),
     );
   }
 }

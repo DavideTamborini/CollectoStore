@@ -47,11 +47,31 @@ class ProductRepository implements IGenericRepo<Product> {
     }
   }
 
-  Future<Either<List<String>, ProductException>> getCategories({
-    required int itemId,
-  }) async {
+  Future<Either<List<String>, ProductException>> getCategories() async {
     try {
       final apiRequest = await _apiManager.getCategories();
+      return Left(apiRequest);
+    } on Exception catch (e) {
+      return Right(
+        e is ProductException
+            ? e
+            : ProductException(statusMessage: e.toString()),
+      );
+    }
+  }
+
+  Future<Either<List<Product>, ProductException>> getCategoryItems({
+    required String categoryName,
+    required int pageNumber,
+    required int pageSize,
+    SortType sortBy = SortType.asc,
+  }) async {
+    try {
+      final apiRequest = await _apiManager.getCategoryItems(
+        categoryName: categoryName,
+        pageNumber: pageNumber,
+        pageSize: pageSize,
+      );
       return Left(apiRequest);
     } on Exception catch (e) {
       return Right(

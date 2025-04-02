@@ -1,53 +1,49 @@
+import 'package:collecto_repos/collecto_repos.dart';
+import 'package:collecto_store/pages/store/controller/categories_controller.dart';
 import 'package:collecto_store/pages/store/controller/products_controller.dart';
 import 'package:collecto_store/pages/store/elements/product_category.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
-
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  late final ScrollController _productScrollController;
-  final productController = Get.find<ProductsController>();
-
-  @override
-  void initState() {
-    super.initState();
-    _productScrollController = ScrollController();
-    _productScrollController.addListener(_onScroll);
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _productScrollController.dispose();
-  }
+class HomePage extends GetView<CategoriesController> {
+  const HomePage({
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              ProductCategory(
-                scrollController: _productScrollController,
+        child: controller.obx(
+          (categories) {
+            // Controller injection
+            for (final category in categories ?? <String>[]) {
+              Get.put(
+                ProductsController(
+                  productRepository: Get.find<ProductRepository>(),
+                  categoryName: category,
+                ),
+                tag: category,
+              );
+            }
+            return SingleChildScrollView(
+              child: Column(
+                children: [
+                  for (final category in categories!)
+                    ProductCategory(
+                      categoryName: category,
+                    ),
+                ],
               ),
-            ],
+            );
+          },
+          onLoading: const Center(
+            child: CircularProgressIndicator(),
           ),
+          onEmpty: const Text('No category found'),
+          onError: (message) => Text('$message'),
         ),
       ),
     );
-  }
-
-  void _onScroll() {
-    if (_productScrollController.offset >=
-        _productScrollController.position.maxScrollExtent) {
-      productController.fetchProducts();
-    }
   }
 }

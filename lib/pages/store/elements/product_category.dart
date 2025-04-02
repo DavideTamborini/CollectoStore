@@ -5,11 +5,14 @@ import 'package:get/get.dart';
 
 class ProductCategory extends GetView<ProductsController> {
   const ProductCategory({
-    required this.scrollController,
+    required this.categoryName,
     super.key,
   });
 
-  final ScrollController scrollController;
+  final String categoryName;
+
+  @override
+  String get tag => categoryName;
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,7 @@ class ProductCategory extends GetView<ProductsController> {
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             child: Text(
-              'Products',
+              categoryName,
               style: Get.theme.textTheme.titleLarge?.copyWith(
                 fontStyle: FontStyle.italic,
               ),
@@ -44,7 +47,7 @@ class ProductCategory extends GetView<ProductsController> {
           (products) => ListView.separated(
             padding: const EdgeInsets.symmetric(horizontal: 20),
             physics: const BouncingScrollPhysics(),
-            controller: scrollController,
+            controller: controller.scrollController,
             scrollDirection: Axis.horizontal,
             itemBuilder: (context, index) => ProductCard(products[index]),
             separatorBuilder: (context, index) => const SizedBox(width: 10),
