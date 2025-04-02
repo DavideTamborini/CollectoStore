@@ -1,7 +1,7 @@
 import 'package:collecto_repos/collecto_repos.dart';
 import 'package:collecto_store/app/bindings/bindings.dart';
-import 'package:collecto_store/pages/home/controller/products_controller.dart';
-import 'package:collecto_store/pages/home/view/home_page.dart';
+import 'package:collecto_store/pages/pages.dart';
+import 'package:collecto_store/pages/store/controller/products_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get/get.dart';
