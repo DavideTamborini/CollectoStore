@@ -15,5 +15,16 @@ void main() {
       );
       expect(apiRequest.length, 20);
     });
+
+    test('getItem', () async {
+      const itemId = 1;
+      final apiRequest = await productApiManager.getItem(itemId: itemId);
+      expect(apiRequest.id, itemId);
+    });
+
+    test('getCategories', () async {
+      final apiRequest = await productApiManager.getCategories();
+      expect(apiRequest, isA<List<String>>());
+    });
   });
 }
