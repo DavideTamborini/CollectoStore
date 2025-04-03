@@ -26,9 +26,8 @@ $ flutter run --flavor development --target lib/main_development.dart
 # Production
 $ flutter run --flavor production --target lib/main_production.dart
 ```
-![simulator_screenshot_D4A4C494-0B62-45CF-807C-CBE23738ADA7](https://github.com/user-attachments/assets/c387c343-8cb8-415e-870b-e2e46ebe6be2)
 
-_\*Collecto Store works on iOS and Android
+<img src="https://github.com/user-attachments/assets/c387c343-8cb8-415e-870b-e2e46ebe6be2" width="200">
 
 ---
 
